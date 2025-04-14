@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
-const app = require('../src/app')
-const request = require("supertest");
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import app from '../src/app';
+import request from "supertest";
 
 let mongoServer;
 
@@ -31,20 +31,20 @@ afterEach(async () => {
 });
 
 global.signin = async () => {
-    const email = 'test@test.com'
-    const password = 'password'
-    const name = 'testy'
-  
-    const response = await request(app)
-      .post('/users')
-      .send({
-        email,
-        password,
-        name
-      })
-      .expect(201)
-  
-    const cookie = response.get('Set-Cookie')
-  
-    return cookie
-  }
+  const email = 'test@test.com'
+  const password = 'password'
+  const name = 'testy'
+
+  const response = await request(app)
+    .post('/users')
+    .send({
+      email,
+      password,
+      name
+    })
+    .expect(201)
+
+  const cookie = response.get('Set-Cookie')
+
+  return cookie
+}
